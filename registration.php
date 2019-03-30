@@ -2,12 +2,9 @@
 <html lang="en">
 <?php
 
-$servername = "localhost";
-	$username = "root";
-	$password = "Gkswnsqja135";
-	$dbname = "library";
-	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
+require("databaseConstants.php");
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {

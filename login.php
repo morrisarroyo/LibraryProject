@@ -1,11 +1,7 @@
 <!-- <!DOCTYPE html>
 <html lang="en">
 <?php
-
-$servername = "localhost";
-$username = "root";
-$password = "Gkswnsqja135";
-$dbname = "library";
+require("databaseConstants.php");
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
