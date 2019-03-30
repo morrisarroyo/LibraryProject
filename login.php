@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <?php
 
 $servername = "localhost";
 $username = "root";
-$password = "password";
+$password = "Gkswnsqja135";
 $dbname = "library";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -19,65 +19,72 @@ session_start();
 ?>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Student Login Form | LMS </title>
+    <title> Login </title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/animate.min.css" rel="stylesheet">
-    <link href="css/custom.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+
+
 </head>
 
 <br>
-
+<!-- 
 <div class="col-lg-12 text-center ">
     <h1 style="font-family:Lucida Console">Library Management System</h1>
-</div>
+</div> -->
 
 <br>
 
 <body class="login">
 
 
-<div class="login_wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 offset-md-4 form-div">
+                <form name="form1" action="" method="post">
+                    <h2 class="text-center"> Library Login</h2><br><br>
 
-    <section class="login_content">
-        <form name="form1" action="" method="post">
-            <h2>User Login</h2>
+                    <div class="text-center">
+                        <input type="text" name="email" class="form-control" placeholder="Email" required="" />
+                    </div>
+                    <div class="text-center">
+                        <input type="password" name="password" class="form-control" placeholder="Password" required="" />
+                    </div>
+                    <div class="text-center">
 
-            <div>
-                <input type="text" name="email" class="form-control" placeholder="Email" required=""/>
+                </div>
+                    <br>
+
+                        <div class="form-group">
+                            <button type="submit" name="submit1" class="btn btn-primary btn-block btn-lg">Login</button>
+                        </div>
+                    <div class="clearfix"></div>
+
+                    <p class="text-center"> Not a member? <a href="registration.php">  Create Account </a> </p>
+
+
+                    <!-- <div class="separator">
+                        <p class="change_link">New to site?
+                            <a href="registration.php"> Create Account </a>
+                        </p> -->
+
+                        <div class="clearfix"></div>
+                        <br />
+
+
+                    </div>
+                </form>
             </div>
-            <div>
-                <input type="password" name="password" class="form-control" placeholder="Password" required=""/>
-            </div>
-            <div class="col-lg-12  col-lg-push-3">
+        </div>
+        </section>
 
-                <input class="btn btn-default submit" type="submit" name="submit1" value="Login">
-                <!-- <a class="reset_pass" href="#">Lost your password?</a> -->
-            </div>
-
-            <div class="clearfix"></div>
-
-            <div class="separator">
-                <p class="change_link">New to site?
-                    <a href="registration.php"> Create Account </a>
-                </p>
-
-                <div class="clearfix"></div>
-                <br/>
-
-
-            </div>
-        </form>
-    </section>
-
-    <?php
+        <?php
         $msg = '';
        if($_SERVER["REQUEST_METHOD"] == "POST") {
         // username and password sent from form 
@@ -102,18 +109,19 @@ session_start();
            header("location: index.php");
         }else {
            echo '
-            <div class="alert alert-danger col-lg-6 col-lg-push-3">
-            <strong style="color:white">Invalid</strong> Username Or Password.
+            <div class="alert alert-danger">
+            <strong style="color:red">Invalid</strong> Username Or Password.
             </div>
         ';
         }
      }
-  ?> 
+  ?>
 
 
 
-</div>
+    </div>
 
 
 </body>
+
 </html>
