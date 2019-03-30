@@ -3,14 +3,11 @@
     // session isn't started
 		session_start();
 	}
-	if (isset($_POST['logout'])) {
-		unset($_SESSION['login_user']);
-	}
-	//$_SESSION['login_user'] = 'food';
  ?>
  
-<?php if (isset($_SESSION['login_user'])) {
-	// include('navbar.php');
+<?php 
+	include('navbar.php');
+	/*
 	echo '
 	<!DOCTYPE html>
 	<html>
@@ -58,7 +55,8 @@
 		</div>
 	  </nav>
 	';
-}
+	*/
+
  ?>
 
 
@@ -110,7 +108,7 @@ function printCatalogue() {
 	
 	$servername = "localhost";
 	$username = "root";
-	$password = "Gkswnsqja135";
+	$password = "password";
 	$dbname = "library";
 	/*
 	$link = mysql_connect('localhost', 'root', 'password');
