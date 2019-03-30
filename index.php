@@ -9,32 +9,65 @@
 	//$_SESSION['login_user'] = 'food';
  ?>
  
- <button>home</button>
- <?php if (isset($_SESSION['login_user'])) {
-	echo "<button>User</button>";
-} ?>
- <button onClick>My account</button>
- <button>Search</button>
- <?php 
-	if (isset($_SESSION['login_user'])) {
-		echo $_SESSION['login_user'];
-		include('logoutform.php');
-	}
+<?php if (isset($_SESSION['login_user'])) {
+	// include('navbar.php');
+	echo '
+	<!DOCTYPE html>
+	<html>
 	
+	<head>
+	  <meta charset="utf-8" />
+	  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	  <title>Page Title</title>
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+		crossorigin="anonymous">
+	</head>
+	
+	<body>
+	  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="#">
+		  <img src="images/home.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+		  Library Application
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+		  aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+		  <ul class="navbar-nav">
+			<li class="nav-item active">
+			  <a class="nav-link" href="#">My Account <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+			  <a class="nav-link" href="#">Users</a>
+			</li>
+			<li class="nav-item">
+			  <a class="nav-link" href="#">Search</a>
+			</li>
+			';
+	echo '<li> <a style="color:blue;" class="nav-link" href"="#">' ;
+	echo $_SESSION['login_user'];
+	echo '</a></li>';
+	echo '	<li class="nav-item">
+			<form role = "form" action = "index.php" method = "post">
+			<button type="submit" name="logout"> Log Out</button>
+		 	</form>
+		 	</li>
+		  </ul>
+		</div>
+	  </nav>
+	';
+}
  ?>
 
-<?php
 
+
+
+<?php
 //echo "Sample PHP Code";
 //checkLogin();
 printCatalogue();
-echo '<p><a href="test.php">Test</a></p>';
-
-
-
-
-
-
 /*
 	Log In Log Out with defined values;
 	Reference:https://www.tutorialspoint.com/php/php_login_example.htm
@@ -77,7 +110,7 @@ function printCatalogue() {
 	
 	$servername = "localhost";
 	$username = "root";
-	$password = "password";
+	$password = "Gkswnsqja135";
 	$dbname = "library";
 	/*
 	$link = mysql_connect('localhost', 'root', 'password');
