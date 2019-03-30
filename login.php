@@ -3,11 +3,11 @@
 <?php
 
 $servername = "localhost";
-	$username = "root";
-	$password = "Gkswnsqja135";
-	$dbname = "library";
-	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
+$username = "root";
+$password = "password";
+$dbname = "library";
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
@@ -99,7 +99,7 @@ session_start();
         if($count == 1) {
            //session_register("myusername");
            $_SESSION['login_user'] = $myusername;
-           header("location: plain_page.php");
+           header("location: index.php");
         }else {
            echo '
             <div class="alert alert-danger col-lg-6 col-lg-push-3">
