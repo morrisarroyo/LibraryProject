@@ -42,7 +42,7 @@ session_start();
         <div class="row">
             <div class="col-md-4 offset-md-4 form-div">
                 <form name="form1" action="" method="post">
-                    <h2 class="text-center"> Library Login</h2><br><br>
+                    <h2 class="text-center"> User Login</h2><br><br>
 
                     <div class="text-center">
                         <input type="text" name="email" class="form-control" placeholder="Email" required="" />
@@ -89,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // If result matched $myusername and $mypassword, table row must be 1 row
 
     if ($count == 1) {
-        //session_register("myusername");
+        // session_register("myusername");
         $_SESSION['login_user'] = $myusername;
         header("location: index.php");
     } else {

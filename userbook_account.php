@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
-
 </head>
 <body>
 
@@ -16,7 +15,6 @@
 require "databaseConstants.php";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
-// include('navbar.php');
 ?>
          <?php
 if (session_id() == '' || !isset($_SESSION)) {
@@ -80,80 +78,113 @@ echo '	<li class="nav-item">
 	  </nav>
 	';
 ?>
-    <div class ="container">
-    <h2 style="margin-top:1.5em; margin-left: 0.5em;"> My Issued Books</h2>
-
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Books</th>
-      <th scope="col">Date Borrowed</th>
-      <th scope="col">Return</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <th scope="row"></th>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-
-    <tr>
-      <th scope="row"> </th>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-
-    <tr>
-      <th scope="row"></th>
-      <td></td>
-      <td></td>
-      <td></td>
-  </tbody>
-
-</table>
-</div>
 <?php
-$sql = "SELECT * FROM user_book WHERE userid = $_SESSION[userid]";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        echo '
-        <tbody>
-        <tr>
-          <th scope="row"></th>
-          <td></td>
-          <td></td>
-          <td> ?> <a href="return.php"?id=<?php echo $row["id"];?> Return Book </a> <?php echo </td>
-        </tr>
 
-        <tr>
-          <th scope="row"> </th>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
+  //create the sql statement
+  $sql = "SELECT * FROM user_table";
+  $result = mysqli_query($conn, $sql);
 
-        <tr>
-          <th scope="row"></th>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-      </tbody>';
-    }
-}
+  if ($result->num_rows > 0) {
+      echo '     <div class ="container">
+      <h2 style="margin-top:3em; margin-left: 0.5em;"> My Issued Books</h2>';
+      echo "<table class='table'>";
+      echo '  <thead class="thead-dark">
+              <tr>
+                <th scope="col"> #</th>
+                <th scope="col">Books</th>
+                <th scope="col">Date Borrowed</th>
+                <th scope="col">Return</th>
+              </tr>
+            </thead>';
+
+  //PRINT OUT ALL THE PRODUCT
+      $count = 1;
+      while ($row = mysqli_fetch_assoc($result)) {
+
+          echo '<form method="post">';
+          echo '<tr>';
+          echo '<th scope="row">'.$count.'</th>';
+          echo '<td>' . $row["firstname"] . $row["lastname"] . '</td>';
+          echo '<td>' . $row["email"] . '</td>';
+          echo '<td> <button name="return" type="submit">Return</button></td>';
+          echo '</tr>';
+          echo '</form>';
+          $count++;
+
+      }
+      echo "</table>
+      </div>";
+
+  } else {
+      echo '     <div class ="container">
+    <h2 style="margin-top:3em; margin-left: 0.5em;"> My Issued Books</h2>';
+      echo "<table class='table'>";
+      echo '  <thead class="thead-dark">
+            <tr>
+              <th scope="col"> #</th>
+              <th scope="col">Books</th>
+              <th scope="col">Date Borrowed</th>
+              <th scope="col">Return</th>
+            </tr>
+          </thead>';
+      // echo '<form method="post">';
+      echo '<tr>';
+      echo '<th scope="row">'.$count.'</th>';
+      echo '<td>' . $row["firstname"] . '</td>';
+      echo '<td>' . $row["firstname"] . '</td>';
+      echo '<td> <button name="return" type="submit">Return</button></td>';
+      echo '</tr>';
+      // echo '</form>';
+  }
+  $conn->close();
+
+  if (isset($_POST["return"])) {
+
+      //     //CREATE A VARIABLE THAT HOLDS THE SELECTED PRODUCTED TO BE ADDED TO CART
+      //         $selectedProduct = $row_all["name"];
+
+      //     echo 'Selected Product  = '.$selectedProduct;
+
+      // }
+  }
 
 ?>
+
+<?php
+if ($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['returned'])) {
+    returnedBooks();
+}
+function returnedBooks()
+{
+    // do stuff
+}
+?>
+
+
+<?php
+echo '    <link rel="stylesheet" href="footer.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div id="footer" style="margin-top:11em;">
+    <p id="copyright">Library Project 2019 &copy;</p>
+    <ul id="footer-social-media">
+        <li><a href="#" class="fa fa-facebook"></a></li>
+        <li><a href="#" class="fa fa-twitter"></a></li>
+        <li><a href="#" class="fa fa-linkedin"></a></li>
+        <li><a href="#" class="fa fa-instagram"></a></li>
+    </ul>
+    <p id="lastupdate"> Last update: April 2019</p>
+
+    <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Sitemap</a></li>
+        <li><a href="#">Support</a></li>
+        <li><a href="admin.html">Admin</a></li>
+    </ul>
+</div>
+'?>
 
 </body>
 </html>
 
 </html>
-<?php
-include 'footer.php'
-?>

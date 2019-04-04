@@ -91,13 +91,14 @@ function checkLogin()
     if (isset($_POST['logout'])) {
         unset($_SESSION['login_user']);
         header("Location: login.php");
+        
     }
     //$msg = '';
-    if (!isset($_SESSION['login_user'])) {
-        include 'loginform.php';
-    } else {
-        include 'logoutform.php';
-    }
+    // if (!isset($_SESSION['login_user'])) {
+    //     include 'loginform.php';
+    // } else {
+    //     include 'logoutform.php';
+    // }
 }
 /*
 Print book table as a html table;
