@@ -2,10 +2,8 @@
 <html lang="en">
 <?php
 
-$servername = "localhost";
-	$username = "root";
-	$password = "Gkswnsqja135";
-	$dbname = "library";
+    require("databaseConstants.php");
+
 	// Create connection
 	$conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -21,24 +19,27 @@ if ($conn->connect_error) {
     <!-- Meta, title, CSS, favicons, etc. -->
 
     <title>User Registration</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/footer.css">
 
 </head>
 
 <br>
+<div class="col-lg-12 text-center ">
+    <h1 style="font-family:Lucida Console">Library Management System</h1>
+</div>
 
 
-<body class="login" style="margin-top: -20px;">
+<body class="login" style="margin-top: 0.5em; ">
 
 
 
-    <div class="container">
+    <div class="container" style="height: 36em;">
 
         <div class="row">
             <div class="col-md-4 offset-md-4 form-div">
                 <form name="form1" action="" method="post">
-                    <br><br>
                     <h2 class="text-center"> Library Register</h2><br>
 
                     <div class="form-group">
@@ -98,3 +99,6 @@ if ($conn->connect_error) {
 </body>
 
 </html>
+<?php
+include 'footer.php'
+?>

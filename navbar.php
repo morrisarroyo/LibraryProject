@@ -22,7 +22,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="#">My Account <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
@@ -30,6 +30,15 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Search</a>
+        </li>
+        <li class="nav-item" style="width:48em;">
+          <a class="nav-link" href="#"></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">USERNAME</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Logout</a>
         </li>
       </ul>
     </div>

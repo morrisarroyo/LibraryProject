@@ -1,11 +1,8 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <?php
+require "databaseConstants.php";
 
-$servername = "localhost";
-$username = "root";
-$password = "Gkswnsqja135";
-$dbname = "library";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -19,32 +16,29 @@ session_start();
 ?>
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title> Login </title>
 
-    <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="css/footer.css">
 
 </head>
 
 <br>
-<!-- 
 <div class="col-lg-12 text-center ">
     <h1 style="font-family:Lucida Console">Library Management System</h1>
-</div> -->
+</div>
 
 <br>
 
 <body class="login">
 
 
-    <div class="container">
+    <div class="container"  style="margin-top:3em; height: 32em;">
         <div class="row">
             <div class="col-md-4 offset-md-4 form-div">
                 <form name="form1" action="" method="post">
@@ -67,17 +61,8 @@ session_start();
                     <div class="clearfix"></div>
 
                     <p class="text-center"> Not a member? <a href="registration.php">  Create Account </a> </p>
-
-
-                    <!-- <div class="separator">
-                        <p class="change_link">New to site?
-                            <a href="registration.php"> Create Account </a>
-                        </p> -->
-
                         <div class="clearfix"></div>
-                        <br />
-
-
+                        <br/>
                     </div>
                 </form>
             </div>
@@ -85,37 +70,37 @@ session_start();
         </section>
 
         <?php
-        $msg = '';
-       if($_SERVER["REQUEST_METHOD"] == "POST") {
-        // username and password sent from form 
-        
-        $myusername = mysqli_real_escape_string($conn,$_POST['email']);
-        $mypassword = mysqli_real_escape_string($conn,$_POST['password']); 
-        
-        $sql = "SELECT userid FROM user_table WHERE email = '$myusername' and pass = '$mypassword'";
-        //$result = mysqli_query($conn,$sql);
-        $result = $conn->query($sql);
-        $row = $result->fetch_assoc();
-        //$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-        //$active = $row['active'];
-        
-        $count = mysqli_num_rows($result);
-        
-        // If result matched $myusername and $mypassword, table row must be 1 row
-          
-        if($count == 1) {
-           //session_register("myusername");
-           $_SESSION['login_user'] = $myusername;
-           header("location: index.php");
-        }else {
-           echo '
+$msg = '';
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // username and password sent from form
+
+    $myusername = mysqli_real_escape_string($conn, $_POST['email']);
+    $mypassword = mysqli_real_escape_string($conn, $_POST['password']);
+
+    $sql = "SELECT userid FROM user_table WHERE email = '$myusername' and pass = '$mypassword'";
+    //$result = mysqli_query($conn,$sql);
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    //$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+    //$active = $row['active'];
+
+    $count = mysqli_num_rows($result);
+
+    // If result matched $myusername and $mypassword, table row must be 1 row
+
+    if ($count == 1) {
+        //session_register("myusername");
+        $_SESSION['login_user'] = $myusername;
+        header("location: index.php");
+    } else {
+        echo '
             <div class="alert alert-danger">
             <strong style="color:red">Invalid</strong> Username Or Password.
             </div>
         ';
-        }
-     }
-  ?>
+    }
+}
+?>
 
 
 
@@ -125,3 +110,8 @@ session_start();
 </body>
 
 </html>
+
+</html>
+<?php
+include 'footer.php'
+?>
