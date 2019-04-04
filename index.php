@@ -5,7 +5,6 @@ if (session_id() == '' || !isset($_SESSION)) {
     session_start();
 }
 ?>
-
 <?php
 // include('navbar.php');
 echo '
@@ -62,9 +61,6 @@ echo '	<li class="nav-item">
 	  </nav>
 	';
 ?>
-
-
-
 
 <?php
 //echo "Sample PHP Code";

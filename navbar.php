@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 
 <head>
@@ -22,12 +22,23 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
+<<<<<<< HEAD
         <li class="nav-item">
+=======
+		
+		<?php if (isset($_SESSION['login_user'])): ?>
+        <li class="nav-item active">
+>>>>>>> 56665cc4e6b66a9441ab83817487d48bb6bd6b7c
           <a class="nav-link" href="#">My Account <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
+		<li class="nav-item">
           <a class="nav-link" href="#">Users</a>
         </li>
+		<?php else: ?>
+        <li class="nav-item active">
+          <a class="nav-link" href="login.php">My Account <span class="sr-only">(current)</span></a>
+        </li>
+		<?php  endif; ?>
         <li class="nav-item">
           <a class="nav-link" href="#">Search</a>
         </li>
@@ -45,4 +56,4 @@
   </nav>
 </body>
 
-</html>
+</html> -->
