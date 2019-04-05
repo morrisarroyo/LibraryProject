@@ -43,7 +43,7 @@ echo '
 	  <nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="index.php">
 		  <img src="images/home.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-		  Library Application
+		  Library Management
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
 		  aria-expanded="false" aria-label="Toggle navigation">
@@ -62,9 +62,9 @@ echo '
 			<a class="nav-link" href="userbook_account.php">Borrowed</a>
       </li>
       <li class="nav-item">
-			<a class="nav-link" href="#">Search</a>
+			<a class="nav-link" href="search.php">Search</a>
 		  </li>
-			<li class="nav-item" style="width:40em;">
+			<li class="nav-item" style="width:38em;">
 			<a class="nav-link" href="#"></a>
 		  </li>
 			';

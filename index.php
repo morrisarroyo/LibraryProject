@@ -28,7 +28,7 @@ echo '
 	  <nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="index.php">
 		  <img src="images/home.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-		  Library Application
+		  Library Management
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
 		  aria-expanded="false" aria-label="Toggle navigation">
@@ -46,7 +46,7 @@ echo '
 		  <li class="nav-item">
 			<a class="nav-link" href="search.php"></a>
 		  </li>
-			<li class="nav-item" style="width:54.5em;">
+			<li class="nav-item" style="width:52em;">
 			<a class="nav-link" href="#"></a>
 		  </li>
 			';
@@ -54,7 +54,7 @@ echo '<li> <a style="color:blue;" class="nav-link" href"="#">';
 echo $_SESSION['login_user'];
 echo '</a></li>';
 echo '	<li class="nav-item">
-			<form role = "form" action = "index.php" method = "post">
+			<form role = "form" action = "login.php" method = "post">
 			<button type="submit" name="logout"> Log Out</button>
 		 	</form>
 		 	</li>
