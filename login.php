@@ -74,6 +74,9 @@ $msg = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // username and password sent from form
 
+    if(!isset($_POST['logout'])) {
+
+    
     $myusername = mysqli_real_escape_string($conn, $_POST['email']);
     $mypassword = mysqli_real_escape_string($conn, $_POST['password']);
 
@@ -99,6 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         ';
     }
+}
 }
 ?>
 

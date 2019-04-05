@@ -89,8 +89,8 @@ echo '	<li class="nav-item">
     <form action="search_result.php" method="post">
         <select name="catgo"style="height:3em">
         <option value="title">Title</option>
-            <option value="title">BookID</option>
-            <option value="title">ISBN</option>
+            <option value="bookid">BookID</option>
+            <option value="isbn">ISBN</option>
         </select>
         <input type="text" name="search" size="50" style="height:3em"/> 
         <button style="height:3em">Search</button>

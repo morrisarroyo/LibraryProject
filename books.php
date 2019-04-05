@@ -132,8 +132,10 @@ function printCatalogue()
     $sql = "SELECT bookid, title,authorfirstname, authorlastname, isbn, year FROM book";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
-      echo '     <div class ="container">
-      <h2 style="margin-top:4em; margin-left: 0.5em;"> </h2>';
+      echo '    <h1 style="margin-top: 2em;margin-bottom: 1em;text-align: center; color:  #0099ff
+      "> Total Books: <b style=""">'.$result->num_rows.'</b> </h1>';
+      echo '     <div class ="container" style="margin-bottm:10em">
+      <h2 style="margin-top:2em;margin-left: 0.5em;"> Users</h2>';
       echo "<table class='table'>";
       echo '  <thead class="thead-dark">
               <tr>

@@ -85,12 +85,14 @@ echo '	<li class="nav-item">
 
 <?php
 //create the sql statement
-$sql = "SELECT * FROM user_table ORDER BY fine DESC";
+$sql = "SELECT * FROM user_table ORDER BY lastname ASC";
 $result = mysqli_query($conn, $sql);
 
 if ($result->num_rows > 0) {
+  echo '    <h1 style="margin-top: 2em;margin-bottom: 1em;text-align: center;color: #0099ff
+  "> Total Users: <b style=""">'.$result->num_rows.'</b> </h1>';
     echo '     <div class ="container" style="margin-bottm:10em">
-    <h2 style="margin-top:4em;margin-left: 0.5em;"> Users</h2>';
+    <h2 style="margin-top:2em;margin-left: 0.5em;"> Users</h2>';
     echo "<table class='table'>";
     echo '  <thead class="thead-dark">
             <tr>
@@ -98,6 +100,7 @@ if ($result->num_rows > 0) {
               <th scope="col">Name  </th>
               <th scope="col">Email  </th>
               <th scope="col">Fine Due</th>
+              <th scope="col">Edit</th>
               <th scope="col">Delete</th>
             </tr>
           </thead>';
@@ -113,6 +116,7 @@ if ($result->num_rows > 0) {
         echo '<td>' . $row["email"] . '</td>';
         echo '<td>' . $row["fine"] . '</td>';
 
+        echo '<td> <button name="delete" type="submit">Edit</button></td>';
         echo '<td> <button name="delete" type="submit">Delete</button></td>';
         echo '</tr>';
         // echo '</form>';
@@ -124,7 +128,7 @@ if ($result->num_rows > 0) {
 
 } else {
     echo '     <div class ="container">
-  <h2 style="margin-top:4em; margin-left: 0.5em;"> Interested Books</h2>';
+  <h2 style="margin-top:4em; margin-left: 0.5em;"> Users</h2>';
     echo "<table class='table'>";
     echo '  <thead class="thead-dark">
           <tr>

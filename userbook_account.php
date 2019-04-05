@@ -62,7 +62,7 @@ echo '
 			<a class="nav-link" href="userbook_account.php">Borrowed</a>
       </li>
       <li class="nav-item">
-			<a class="nav-link" href="#">Search</a>
+			<a class="nav-link" href="search.php">Search</a>
 		  </li>
 			<li class="nav-item" style="width:38em;">
 			<a class="nav-link" href="#"></a>
@@ -88,9 +88,11 @@ echo '	<li class="nav-item">
   $result = mysqli_query($conn, $sql);
 
   if ($result->num_rows > 0) {
-      echo '     <div class ="container">
-      <h2 style="margin-top:4em; margin-left: 0.5em;"> Issued Books</h2>';
-      echo "<table class='table'>";
+    echo '    <h1 style="margin-top: 2em;margin-bottom: 1em;text-align: center; color: #0099ff
+    "> Total Books Borrowed: <b style=""">'.$result->num_rows.'</b> </h1>';
+    echo '     <div class ="container" style="margin-bottm:10em">
+    <h2 style="margin-top:2em;margin-left: 0.5em;"> Users</h2>';
+    echo "<table class='table'>";
       echo '  <thead class="thead-dark">
               <tr>
                 <th scope="col"> #</th>
@@ -114,7 +116,7 @@ echo '	<li class="nav-item">
           echo '<td>' . $row["email"] . '</td>';
           echo '<td>' . $row["email"] . '</td>';
 
-          echo '<td> <button name="return" type="submit">Return</button></td>';
+          echo '<td> <button name="return" type="submit">Returned</button></td>';
           echo '</tr>';
           // echo '</form>';
           $count++;
@@ -124,9 +126,10 @@ echo '	<li class="nav-item">
       </div>";
 
   } else {
-      echo '     <div class ="container">
-    <h2 style="margin-top:4em; margin-left: 0.5em;"> My Issued Books</h2>';
-      echo "<table class='table'>";
+    echo '    <h1 style="margin-top: 2em;margin-bottom: 1em;text-align: center;"> Total Users: <b style=""">'.$result->num_rows.'</b> </h1>';
+    echo '     <div class ="container" style="margin-bottm:10em">
+    <h2 style="margin-top:2em;margin-left: 0.5em;"> Users</h2>';
+    echo "<table class='table'>";
       echo '  <thead class="thead-dark">
             <tr>
               <th scope="col"> #</th>

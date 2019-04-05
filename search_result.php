@@ -111,10 +111,6 @@ $sql = "SELECT * FROM book WHERE title LIKE '%$search_conn%'";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     echo '    <h3 style="margin-top: 1em;margin-bottom: 1em;text-align: center;"><i> Keyword Searched: <b style=""">'.$search_conn.'</b></i> </h3>';
-    // echo '<h5  style="margin-top: 1em;margin-bottom: 1em;text-align: center;"> Found
-    //          <b style="color:red">'.$result->num_rows.'</b> matche(s) for <b>'.$search_conn.'</b>
-    //       </h5>';
-
     echo '<h5  style="margin-top: 2em;margin-bottom: 1em;text-align: center;"> Found <b>'.$result->num_rows.'</b> matche(s) for <b>"'.$search_conn.'"</b>
     </h5>';
     echo '     <div class ="container"><h2 style="margin-top:2em; margin-left: 0.5em;"> </h2>';
@@ -148,7 +144,7 @@ if ($result->num_rows > 0) {
 } else {
     echo '<div>';
     echo '    <h3 style="margin-top: 1em;margin-bottom: 1em;text-align: center;"><i> Keyword Searched: <b style="   "">'.$search_conn.'</b></i> </h3>';
-    echo '<h5  style="margin-top: 2em;margin-bottom: 1em;text-align: center;"> Nothing found for <b>'.$search_conn.'</b></h5>';
+    echo '<h5  style="margin-top: 2em;margin-bottom: 1em;text-align: center;color:red"> Nothing found for <b>'.$search_conn.'</b></h5>';
     echo ' </div>';
 }
 
