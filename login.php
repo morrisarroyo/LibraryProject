@@ -42,7 +42,7 @@ session_start();
         <div class="row">
             <div class="col-md-4 offset-md-4 form-div">
                 <form name="form1" action="" method="post">
-                    <h2 class="text-center"> User Login</h2><br><br>
+                    <h2 class="text-center"> Login</h2><br><br>
 
                     <div class="text-center">
                         <input type="text" name="email" class="form-control" placeholder="Email" required="" />

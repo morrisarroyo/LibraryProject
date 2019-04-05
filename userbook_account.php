@@ -51,17 +51,20 @@ echo '
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNav">
 		  <ul class="navbar-nav">
-			<li class="nav-item active">
-			  <a class="nav-link" href="userboo_account.php">My Account <span class="sr-only">(current)</span></a>
+			<li class="nav-item">
+			  <a class="nav-link" href="books.php">Books <span class="sr-only">(current)</span></a>
 			</li>
 			<li class="nav-item">
 			  <a class="nav-link" href="user_list.php">Users</a>
 			</li>
 
-		  <li class="nav-item">
+		  <li class="nav-item active">
+			<a class="nav-link" href="userbook_account.php">Borrowed</a>
+      </li>
+      <li class="nav-item">
 			<a class="nav-link" href="#">Search</a>
 		  </li>
-			<li class="nav-item" style="width:42em;">
+			<li class="nav-item" style="width:40em;">
 			<a class="nav-link" href="#"></a>
 		  </li>
 			';
@@ -86,13 +89,15 @@ echo '	<li class="nav-item">
 
   if ($result->num_rows > 0) {
       echo '     <div class ="container">
-      <h2 style="margin-top:3em; margin-left: 0.5em;"> My Issued Books</h2>';
+      <h2 style="margin-top:4em; margin-left: 0.5em;"> Issued Books</h2>';
       echo "<table class='table'>";
       echo '  <thead class="thead-dark">
               <tr>
                 <th scope="col"> #</th>
                 <th scope="col">Books</th>
+                <th scope="col">Name</th>
                 <th scope="col">Date Borrowed</th>
+                <th scope="col">Date Expired</th>
                 <th scope="col">Return</th>
               </tr>
             </thead>';
@@ -101,14 +106,17 @@ echo '	<li class="nav-item">
       $count = 1;
       while ($row = mysqli_fetch_assoc($result)) {
 
-          echo '<form method="post">';
+          // echo '<form method="post">';
           echo '<tr>';
           echo '<th scope="row">'.$count.'</th>';
           echo '<td>' . $row["firstname"] . $row["lastname"] . '</td>';
           echo '<td>' . $row["email"] . '</td>';
+          echo '<td>' . $row["email"] . '</td>';
+          echo '<td>' . $row["email"] . '</td>';
+
           echo '<td> <button name="return" type="submit">Return</button></td>';
           echo '</tr>';
-          echo '</form>';
+          // echo '</form>';
           $count++;
 
       }
@@ -117,7 +125,7 @@ echo '	<li class="nav-item">
 
   } else {
       echo '     <div class ="container">
-    <h2 style="margin-top:3em; margin-left: 0.5em;"> My Issued Books</h2>';
+    <h2 style="margin-top:4em; margin-left: 0.5em;"> My Issued Books</h2>';
       echo "<table class='table'>";
       echo '  <thead class="thead-dark">
             <tr>

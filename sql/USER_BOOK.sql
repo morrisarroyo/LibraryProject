@@ -1,4 +1,6 @@
-create table USER_BOOK
+DROP TABLE user_book;
+
+create table user_book
 (
 	userid int not null,
 	bookid int not null,
@@ -11,4 +13,3 @@ create table USER_BOOK
 	constraint USER_BOOK_user_table_userid_fk
 		foreign key (userid) references library.user_table (userid)
 );
-

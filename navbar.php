@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -56,4 +56,4 @@
   </nav>
 </body>
 
-</html> -->
+</html>

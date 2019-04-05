@@ -51,16 +51,21 @@ echo '
 		<div class="collapse navbar-collapse" id="navbarNav">
 		  <ul class="navbar-nav">
 			<li class="nav-item">
-			  <a class="nav-link" href="userbook_account.php">My Account <span class="sr-only">(current)</span></a>
+			  <a class="nav-link" href="books.php">Books <span class="sr-only">(current)</span></a>
 			</li>
 			<li class="nav-item active">
 			  <a class="nav-link" href="user_list.php">Users</a>
 			</li>
 
 		  <li class="nav-item">
-			<a class="nav-link" href="#">Search</a>
-		  </li>
-			<li class="nav-item" style="width:42em;">
+			<a class="nav-link" href="userbook_account.php">Borrowed</a>
+      </li>
+      
+      <li class="nav-item">
+			<a class="nav-link" href="">Search</a>
+      </li>
+      
+			<li class="nav-item" style="width:40em;">
 			<a class="nav-link" href="#"></a>
 		  </li>
 			';
@@ -77,22 +82,23 @@ echo '	<li class="nav-item">
 	  </nav>
 	';
 ?>
-<?php
 
+<?php
 //create the sql statement
-$sql = "SELECT * FROM user_table ORDER BY firstname DESC";
+$sql = "SELECT * FROM user_table ORDER BY fine DESC";
 $result = mysqli_query($conn, $sql);
 
 if ($result->num_rows > 0) {
     echo '     <div class ="container" style="margin-bottm:10em">
-    <h2 style="margin-top:3em;margin-left: 0.5em;"> My Issued Books</h2>';
+    <h2 style="margin-top:4em;margin-left: 0.5em;"> Users</h2>';
     echo "<table class='table'>";
     echo '  <thead class="thead-dark">
             <tr>
               <th scope="col"> #</th>
-              <th scope="col">Books</th>
-              <th scope="col">Date Borrowed</th>
-              <th scope="col">Return</th>
+              <th scope="col">Name  </th>
+              <th scope="col">Email  </th>
+              <th scope="col">Fine Due</th>
+              <th scope="col">Delete</th>
             </tr>
           </thead>';
 
@@ -103,9 +109,11 @@ if ($result->num_rows > 0) {
         // echo '<form method="post">';
         echo '<tr>';
         echo '<th scope="row">'.$count.'</th>';
-        echo '<td>' . $row["firstname"] . '</td>';
-        echo '<td>' . $row["firstname"] . '</td>';
-        echo '<td> <button name="return" type="submit">Return</button></td>';
+        echo '<td>' . $row["firstname"] ." ". $row["lastname"]. '</td>';
+        echo '<td>' . $row["email"] . '</td>';
+        echo '<td>' . $row["fine"] . '</td>';
+
+        echo '<td> <button name="delete" type="submit">Delete</button></td>';
         echo '</tr>';
         // echo '</form>';
         $count++;
@@ -116,7 +124,7 @@ if ($result->num_rows > 0) {
 
 } else {
     echo '     <div class ="container">
-  <h2 style="margin-top:3em; margin-left: 0.5em;"> List of Users</h2>';
+  <h2 style="margin-top:4em; margin-left: 0.5em;"> Interested Books</h2>';
     echo "<table class='table'>";
     echo '  <thead class="thead-dark">
           <tr>
@@ -136,8 +144,7 @@ if ($result->num_rows > 0) {
     // echo '</form>';
 }
 $conn->close();
-?>
-<?php
+
 if ($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['remove'])) {
     removeUsers();
 }
