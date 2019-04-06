@@ -22,8 +22,7 @@ if (session_id() == '' || !isset($_SESSION)) {
     session_start();
 }
 ?>
-        <?php
-// include('navbar.php');
+<?php
 echo '
 	<!DOCTYPE html>
 	<html>
@@ -116,8 +115,18 @@ if ($result->num_rows > 0) {
         echo '<td>' . $row["email"] . '</td>';
         echo '<td>' . $row["fine"] . '</td>';
 
-        echo '<td> <button name="delete" type="submit">Edit</button></td>';
-        echo '<td> <button name="delete" type="submit">Delete</button></td>';
+        // Edit user button
+        echo '<td> <form method="post" action="user_list.php">';
+        echo '<input name="bookid" value="'. $row['userid'] . '" type="hidden"/>'; 
+        echo '<input name="return" type="button" value="Edit"> </input>';
+        echo '</form></td>';
+
+        // Delete user button
+        echo '<td> <form method="post" action="user_list.php">';
+        echo '<input name="bookid" value="'. $row['userid'] . '" type="hidden"/>'; 
+        echo '<input name="return" type="button" value="Delete"> </input>';
+        echo '</form></td>';
+
         echo '</tr>';
         // echo '</form>';
         $count++;

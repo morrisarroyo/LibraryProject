@@ -136,7 +136,7 @@ $sql = 'DELETE FROM user_book WHERE bookid = '. $bookid .'';
           echo '';
           echo '<td> <form method="post" action="userbook_account.php">';
           echo '<input name="bookid" value="'. $row['bookid'] . '" type="hidden"/>'; 
-          echo '<input name="return" type="submit"></input>';
+          echo '<input name="return" type="button" value="Return" ></input>';
           echo '</form></td>';
           echo '</tr>';
           $count++;
