@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
     <?php
@@ -21,7 +22,8 @@ if (session_id() == '' || !isset($_SESSION)) {
     session_start();
 }
 ?>
-<?php
+        <?php
+// include('navbar.php');
 echo '
 	<!DOCTYPE html>
 	<html>
@@ -40,7 +42,7 @@ echo '
 	  <nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="index.php">
 		  <img src="images/home.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-		  Library Management
+		  Library Application
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
 		  aria-expanded="false" aria-label="Toggle navigation">
@@ -60,10 +62,10 @@ echo '
       </li>
       
       <li class="nav-item">
-			<a class="nav-link" href="search.php">Search</a>
+			<a class="nav-link" href="">Search</a>
       </li>
       
-			<li class="nav-item" style="width:38em;">
+			<li class="nav-item" style="width:40em;">
 			<a class="nav-link" href="#"></a>
 		  </li>
 			';
@@ -71,7 +73,7 @@ echo '<li> <a style="color:blue;" class="nav-link" href"="#">';
 echo $_SESSION['login_user'];
 echo '</a></li>';
 echo '	<li class="nav-item">
-			<form role = "form" action = "login.php" method = "post">
+			<form role = "form" action = "index.php" method = "post">
 			<button type="submit" name="logout"> Log Out</button>
 		 	</form>
 		 	</li>
@@ -98,23 +100,20 @@ $result = mysqli_query($conn, $sql);
 
 <?php
 //create the sql statement
-$sql = "SELECT * FROM user_table ORDER BY lastname ASC";
+$sql = "SELECT * FROM user_table ORDER BY fine DESC";
 $result = mysqli_query($conn, $sql);
 
 if ($result->num_rows > 0) {
-  echo '    <h1 style="margin-top: 2em;margin-bottom: 1em;text-align: center;color: #0099ff
-  "> Total Users: <b style=""">'.$result->num_rows.'</b> </h1>';
     echo '     <div class ="container" style="margin-bottm:10em">
-    <h2 style="margin-top:2em;margin-left: 0.5em;"> Users</h2>';
+    <h2 style="margin-top:4em;margin-left: 0.5em;"> Users</h2>';
     echo "<table class='table'>";
     echo '  <thead class="thead-dark">
             <tr>
               <th scope="col"> #</th>
               <th scope="col">Name  </th>
               <th scope="col">Email  </th>
-              <th scope="col">Fine</th>
-              <th scope="col"></th>
-              <th scope="col"></th>
+              <th scope="col">Fine Due</th>
+              <th scope="col">Delete</th>
             </tr>
           </thead>';
 
@@ -151,7 +150,7 @@ if ($result->num_rows > 0) {
 
 } else {
     echo '     <div class ="container">
-  <h2 style="margin-top:4em; margin-left: 0.5em;"> Users</h2>';
+  <h2 style="margin-top:4em; margin-left: 0.5em;"> Interested Books</h2>';
     echo "<table class='table'>";
     echo '  <thead class="thead-dark">
           <tr>
