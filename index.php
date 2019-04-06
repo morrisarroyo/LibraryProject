@@ -9,6 +9,7 @@ if (session_id() == '' || !isset($_SESSION)) {
 ?>
 <?php
 // include('navbar.php');
+
 echo '
 	<!DOCTYPE html>
 	<html>
@@ -28,7 +29,7 @@ echo '
 	  <nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="index.php">
 		  <img src="images/home.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-		  Library Management
+		  Library Application
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
 		  aria-expanded="false" aria-label="Toggle navigation">
@@ -46,15 +47,16 @@ echo '
 		  <li class="nav-item">
 			<a class="nav-link" href="search.php"></a>
 		  </li>
-			<li class="nav-item" style="width:52em;">
+			<li class="nav-item" style="width:54.5em;">
 			<a class="nav-link" href="#"></a>
 		  </li>
 			';
 echo '<li> <a style="color:blue;" class="nav-link" href"="#">';
 echo $_SESSION['login_user'];
+echo '<br>'.get_current_user().getmyuid();
 echo '</a></li>';
 echo '	<li class="nav-item">
-			<form role = "form" action = "login.php" method = "post">
+			<form role = "form" action = "index.php" method = "post">
 			<button type="submit" name="logout"> Log Out</button>
 		 	</form>
 		 	</li>
@@ -154,7 +156,7 @@ echo '	<li class="nav-item">
           <div class="small-box bg-red" style="width:10em; margin: 0 auto;margin-top: 1em; margin-bottom: 1em;">
             <div class="inner">
               <?php
-                $sql = "SELECT * FROM user_book";
+                $sql = "SELECT * FROM book";
                 $query = $conn->query($sql);
 
                 echo "<h3 style='font-size: 4em;'>".$query->num_rows."</h3>";
@@ -176,6 +178,7 @@ echo '	<li class="nav-item">
 <?php
 //echo "Sample PHP Code";
 checkLogin();
+
 // printCatalogue();
 /*
 Log In Log Out with defined values;
@@ -184,24 +187,25 @@ Reference:https://www.tutorialspoint.com/php/php_login_example.htm
 function checkLogin()
 {
 
-    if (isset($_POST['login']) && !empty($_POST['uid'])
-        && !empty($_POST['psw'])) {
-
-        if ($_POST['uid'] == '1' && // Checks if value user id input box == 1
-            $_POST['psw'] == '1') { // Checks if value password input box == 1
+    if (isset($_POST['login']) && !empty($_POST['uid']) && !empty($_POST['psw'])) {
+            // Checks if value user id input box == 1
+         // Checks if value password input box == 1
+        if ($_POST['uid'] == '1' && $_POST['psw'] == '1') {
             $_SESSION['valid'] = true;
             $_SESSION['timeout'] = time();
-            $_SESSION['uid'] = '1';
+            $_SESSION['uid'] = $_POST['uid'];
 
             //echo 'You have entered valid use name and password';
         } else {
             $msg = 'Wrong uid or password';
         }
         //header("Refresh:0");
+
     }
     if (isset($_POST['logout'])) {
         unset($_SESSION['login_user']);
         header("Location: login.php");
+
     }
     //$msg = '';
     // if (!isset($_SESSION['login_user'])) {

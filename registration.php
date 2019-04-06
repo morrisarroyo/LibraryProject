@@ -77,7 +77,8 @@ if ($conn->connect_error) {
             ?>
         <?php
             if (isset($_POST["register"]))
-            {   $sql = "INSERT INTO user_table (firstname, lastname, email, pass, islibrarian, fine) VALUES ('$_POST[firstname]', '$_POST[lastname]', '$_POST[email]', '$_POST[password]', false, 0.00)";
+            {   $sql = "INSERT INTO user_table (firstname, lastname, email, pass, islibrarian, fine) VALUES 
+('$_POST[firstname]', '$_POST[lastname]', '$_POST[email]', '$_POST[password]', false, 0.00)";
                 $conn->query($sql);
                 echo '
                 <div class="alert alert-success">
