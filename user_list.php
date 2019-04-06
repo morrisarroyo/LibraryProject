@@ -99,9 +99,9 @@ if ($result->num_rows > 0) {
               <th scope="col"> #</th>
               <th scope="col">Name  </th>
               <th scope="col">Email  </th>
-              <th scope="col">Fine Due</th>
-              <th scope="col">Edit</th>
-              <th scope="col">Delete</th>
+              <th scope="col">Fine</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
             </tr>
           </thead>';
 

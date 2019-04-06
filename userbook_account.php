@@ -81,12 +81,29 @@ echo '	<li class="nav-item">
 	  </nav>
 	';
 ?>
+
+<?php
+if ($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['return'])) {
+    returnedBooks();
+    
+}
+function returnedBooks()
+{
+require "databaseConstants.php";
+$conn = new mysqli($servername, $username, $password, $dbname);
+$bookid = $_POST['bookid'];
+$sql = 'DELETE FROM user_book WHERE bookid = '. $bookid .'';
+
+
+  $result = mysqli_query($conn, $sql);
+}
+?>
+
 <?php
 
   //create the sql statement
-  $sql = "SELECT * FROM user_table";
+  $sql = "SELECT * FROM user_book LEFT JOIN book on book.bookid=USER_BOOK.bookid";
   $result = mysqli_query($conn, $sql);
-
   if ($result->num_rows > 0) {
     echo '    <h1 style="margin-top: 2em;margin-bottom: 1em;text-align: center; color: #0099ff
     "> Total Books Borrowed: <b style=""">'.$result->num_rows.'</b> </h1>';
@@ -100,25 +117,28 @@ echo '	<li class="nav-item">
                 <th scope="col">Name</th>
                 <th scope="col">Date Borrowed</th>
                 <th scope="col">Date Expired</th>
-                <th scope="col">Return</th>
+                <th scope="col"></th>
               </tr>
             </thead>';
 
   //PRINT OUT ALL THE PRODUCT
       $count = 1;
       while ($row = mysqli_fetch_assoc($result)) {
+          $date_borrowed = date("Y-m-d",$row["date_borrowed"]);
+          $date_expired = date("Y-m-d",$row["date_borrowed"]+60*60*24*7*2);
 
-          // echo '<form method="post">';
           echo '<tr>';
           echo '<th scope="row">'.$count.'</th>';
-          echo '<td>' . $row["firstname"] . $row["lastname"] . '</td>';
-          echo '<td>' . $row["email"] . '</td>';
-          echo '<td>' . $row["email"] . '</td>';
-          echo '<td>' . $row["email"] . '</td>';
-
-          echo '<td> <button name="return" type="submit">Returned</button></td>';
+          echo '<td>' . $row["title"] . '</td>';
+          echo '<td>' . $row["authorfirstname"] .' ' .$row["authorlastname"] . '</td>';
+          echo '<td>' . $date_borrowed . '</td>';
+          echo '<td>' . $date_expired . '</td>';
+          echo '';
+          echo '<td> <form method="post" action="userbook_account.php">';
+          echo '<input name="bookid" value="'. $row['bookid'] . '" type="hidden"/>'; 
+          echo '<input name="return" type="submit"></input>';
+          echo '</form></td>';
           echo '</tr>';
-          // echo '</form>';
           $count++;
 
       }
@@ -150,9 +170,7 @@ echo '	<li class="nav-item">
   $conn->close();
 
   if (isset($_POST["return"])) {
-
-      //     //CREATE A VARIABLE THAT HOLDS THE SELECTED PRODUCTED TO BE ADDED TO CART
-      //         $selectedProduct = $row_all["name"];
+   //         $selectedProduct = $row_all["name"];
 
       //     echo 'Selected Product  = '.$selectedProduct;
 
@@ -160,17 +178,6 @@ echo '	<li class="nav-item">
   }
 
 ?>
-
-<?php
-if ($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['returned'])) {
-    returnedBooks();
-}
-function returnedBooks()
-{
-    // do stuff
-}
-?>
-
 
 <?php
 echo '    <link rel="stylesheet" href="footer.css">
