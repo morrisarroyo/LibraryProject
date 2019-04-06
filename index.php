@@ -154,7 +154,7 @@ echo '	<li class="nav-item">
           <div class="small-box bg-red" style="width:10em; margin: 0 auto;margin-top: 1em; margin-bottom: 1em;">
             <div class="inner">
               <?php
-                $sql = "SELECT * FROM book";
+                $sql = "SELECT * FROM user_book";
                 $query = $conn->query($sql);
 
                 echo "<h3 style='font-size: 4em;'>".$query->num_rows."</h3>";
