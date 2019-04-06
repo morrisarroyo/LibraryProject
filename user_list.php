@@ -82,6 +82,21 @@ echo '	<li class="nav-item">
 ?>
 
 <?php
+if ($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['delete'])) {
+    deleteUsers();
+    
+}
+function deleteUsers()
+{
+require "databaseConstants.php";
+$conn = new mysqli($servername, $username, $password, $dbname);
+$userid = $_POST['userid'];
+$sql = 'DELETE FROM user_table WHERE userid = '. $userid .'';
+$result = mysqli_query($conn, $sql);
+}
+?>
+
+<?php
 //create the sql statement
 $sql = "SELECT * FROM user_table ORDER BY lastname ASC";
 $result = mysqli_query($conn, $sql);
@@ -117,13 +132,13 @@ if ($result->num_rows > 0) {
         // Edit user button
         echo '<td> <form method="post" action="user_list.php">';
         echo '<input onclick = "clickButton()" id ='. $row['userid'] . ' name="bookid" value="'. $row['userid'] . '" type="hidden"/>'; 
-        echo '<input id ='. $row['userid'] . ' name="return" type="button" value="Edit"> </input>';
+        echo '<input name="edit" type="button" value="Edit"> </input>';
         echo '</form></td>';
 
         // Delete user button
         echo '<td> <form method="post" action="user_list.php">';
-        echo '<input name="bookid" value="'. $row['userid'] . '" type="hidden"/>'; 
-        echo '<input name="return" type="button" value="Delete"> </input>';
+        echo '<input name="userid" value="'. $row['userid'] . '" type="hidden"/>'; 
+        echo '<input name="delete" type="submit" value="Delete"> </input>';
         echo '</form></td>';
 
         echo '</tr>';
