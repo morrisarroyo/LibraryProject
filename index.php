@@ -202,7 +202,6 @@ function checkLogin()
     if (isset($_POST['logout'])) {
         unset($_SESSION['login_user']);
         header("Location: login.php");
-
     }
     //$msg = '';
     // if (!isset($_SESSION['login_user'])) {

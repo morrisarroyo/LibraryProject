@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
-
 </head>
 <body>
     <?php
@@ -117,8 +116,8 @@ if ($result->num_rows > 0) {
 
         // Edit user button
         echo '<td> <form method="post" action="user_list.php">';
-        echo '<input name="bookid" value="'. $row['userid'] . '" type="hidden"/>'; 
-        echo '<input name="return" type="button" value="Edit"> </input>';
+        echo '<input onclick = "clickButton()" id ='. $row['userid'] . ' name="bookid" value="'. $row['userid'] . '" type="hidden"/>'; 
+        echo '<input id ='. $row['userid'] . ' name="return" type="button" value="Edit"> </input>';
         echo '</form></td>';
 
         // Delete user button

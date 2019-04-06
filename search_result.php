@@ -122,7 +122,6 @@ if ($result->num_rows > 0) {
                   <th scope="col">Author</th>
                   <th scope="col">ISBN</th>
                   <th scope="col">YEAR</th>
-                  <th scope="col">Available</th>
                 </tr>
               </thead>';
 
@@ -135,8 +134,6 @@ if ($result->num_rows > 0) {
         echo '<td>' . $row["authorfirstname"] . " " . $row["authorlastname"] . '</td>';
         echo '<td>' . $row["isbn"] . '</td>';
         echo '<td>' . $row["year"] . '</td>';
-        echo '<td>' . $row["year"] . '</td>';
-        // echo '<td> <button name="return" type="submit">Return</button></td>';
         echo '</tr>';
         $count++;
     }
