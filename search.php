@@ -58,10 +58,10 @@ echo '
 			  <a class="nav-link" href="user_list.php">Users</a>
 			</li>
 
-		  <li class="nav-item active">
+		  <li class="nav-item">
 			<a class="nav-link" href="userbook_account.php">Borrowed</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item active">
 			<a class="nav-link" href="#">Search</a>
 		  </li>
 			<li class="nav-item" style="width:40em;">

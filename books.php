@@ -67,61 +67,26 @@ echo '	<li class="nav-item">
 ?>
 
 <?php
-//echo "Sample PHP Code";
+if ($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['borrow'])) {
+    borrowBooks();
+    
+}
+function borrowBooks()
+{
+  require "databaseConstants.php";
+  $conn = new mysqli($servername, $username, $password, $dbname);
+  $current_time = time();
+  $sql = "INSERT INTO user_book (userid, bookid, date_borrowed, date_overdue, date_returned) VALUES 
+                 (" . $_SESSION['userid'] . ", " . $_POST['bookid'] . ", " . $current_time . ", Null, Null)";
+  $conn->query($sql);
+}
+?>
+
+
+<?php
 checkLogin();
 printCatalogue();
-echo $_POST['bookid'] . "\n";
-echo $_SESSION['userid'];
- if (isset($_POST["borrow"])) {
-
-     require "databaseConstants.php";
-
-     $conn = new mysqli($servername, $username, $password, $dbname);
-     $current_time = time();
-     $sql = "INSERT INTO user_book (userid, bookid, date_borrowed, date_overdue, date_returned) VALUES 
-                    (" . $_SESSION['userid'] . ", " . $_POST['bookid'] . ", " . $current_time . ", Null, Null)";
-     $conn->query($sql);
- }
-
-/*
-Log In Log Out with defined values;
-Reference:https://www.tutorialspoint.com/php/php_login_example.htm
- */
-function checkLogin()
-{
-
-    if (isset($_POST['login']) && !empty($_POST['uid'])
-        && !empty($_POST['psw'])) {
-
-        if ($_POST['uid'] == '1' && // Checks if value user id input box == 1
-            $_POST['psw'] == '1') { // Checks if value password input box == 1
-            $_SESSION['valid'] = true;
-            $_SESSION['timeout'] = time();
-            $_SESSION['uid'] = '1';
-
-            //echo 'You have entered valid use name and password';
-        } else {
-            $msg = 'Wrong uid or password';
-        }
-        //header("Refresh:0");
-    }
-    if (isset($_POST['logout'])) {
-        unset($_SESSION['login_user']);
-        header("Location: login.php");
-        
-    }
-    //$msg = '';
-    // if (!isset($_SESSION['login_user'])) {
-    //     include 'loginform.php';
-    // } else {
-    //     include 'logoutform.php';
-    // }
-}
-/*
-Print book table as a html table;
-Reference:https://www.w3schools.com/php/php_mysql_select.asp
- */
-function printCatalogue()
+ function printCatalogue()
 {
     require ("databaseConstants.php");
     /*
@@ -138,12 +103,15 @@ function printCatalogue()
     //     die("Connection failed: " . $conn->connect_error);
     // }
     // echo "Database Connected successfully";
-    $sql = "SELECT bookid, title,authorfirstname, authorlastname, isbn, year FROM book";
+    $sql = "SELECT bookid, title, authorfirstname, authorlastname, isbn, year FROM book WHERE bookid NOT IN 
+            (SELECT bookid FROM USER_BOOK)";
     //$sql = "SELECT * FROM book LEFT JOIN USER_BOOK ON book.bookid=USER_BOOK.bookid WHERE userid = NULL";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
-      echo '     <div class ="container">
-      <h2 style="margin-top:4em; margin-left: 0.5em;"> </h2>';
+      echo '    <h1 style="margin-top: 2em;margin-bottom: 1em;text-align: center; color:  #0099ff
+      "> Total Books: <b style=""">'.$result->num_rows.'</b> </h1>';
+      echo '     <div class ="container" style="margin-bottm:10em">
+      <h2 style="margin-top:2em;margin-left: 0.5em;"> Books</h2>';
       echo "<table class='table'>";
       echo '  <thead class="thead-dark">
               <tr>
@@ -180,6 +148,32 @@ function printCatalogue()
         echo "0 results";
     }
     $conn->close();
+}
+
+
+function checkLogin()
+{
+
+    if (isset($_POST['login']) && !empty($_POST['uid'])
+        && !empty($_POST['psw'])) {
+
+        if ($_POST['uid'] == '1' && // Checks if value user id input box == 1
+            $_POST['psw'] == '1') { // Checks if value password input box == 1
+            $_SESSION['valid'] = true;
+            $_SESSION['timeout'] = time();
+            $_SESSION['uid'] = '1';
+
+            //echo 'You have entered valid use name and password';
+        } else {
+            $msg = 'Wrong uid or password';
+        }
+        //header("Refresh:0");
+    }
+    if (isset($_POST['logout'])) {
+        unset($_SESSION['login_user']);
+        header("Location: login.php");
+        
+    }
 }
 
 include 'footer.php'

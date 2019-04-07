@@ -53,7 +53,6 @@ echo '
 			';
 echo '<li> <a style="color:blue;" class="nav-link" href"="#">';
 echo $_SESSION['login_user'];
-echo '<br>'.get_current_user().getmyuid();
 echo '</a></li>';
 echo '	<li class="nav-item">
 			<form role = "form" action = "index.php" method = "post">
@@ -176,10 +175,8 @@ echo '	<li class="nav-item">
 </body>
 
 <?php
-//echo "Sample PHP Code";
 checkLogin();
 
-// printCatalogue();
 /*
 Log In Log Out with defined values;
 Reference:https://www.tutorialspoint.com/php/php_login_example.htm
@@ -221,12 +218,26 @@ Reference:https://www.w3schools.com/php/php_mysql_select.asp
 function printCatalogue()
 {
 
+    $servername = "localhost";
+    $username = "root";
+    $password = "Gkswnsqja135";
+    $dbname = "library";
+    /*
+    $link = mysql_connect('localhost', 'root', 'password');
+    $db_list = mysql_list_dbs($link);
+    while ($row = mysql_fetch_object($db_list)) {
+    echo $row->Database . "\n";
+    }
+     */
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
     // Check connection
     // if ($conn->connect_error) {
     //     die("Connection failed: " . $conn->connect_error);
     // }
     // echo "Database Connected successfully";
-    $sql = "SELECT bookid, title,authorfirstname, authorlastname, isbn, year FROM book";
+    $sql = "SELECT bookid, title, authorfirstname, authorlastname, isbn, year FROM book WHERE bookid NOT IN 
+            (SELECT bookid FROM USER_BOOK)";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         echo '     <div class ="container">
@@ -239,18 +250,23 @@ function printCatalogue()
                 <th scope="col">Author</th>
                 <th scope="col">ISBN</th>
                 <th scope="col">YEAR</th>
-                <th scope="col">BUTTON</th>
+                <th scope="col">Borrow</th>
               </tr>
             </thead>';
         // output data of each row
         while ($row = $result->fetch_assoc()) {
+            $book_id = $row["bookid"];
             echo '<tr>';
             echo '<th scope="row">' . $row["bookid"] . '</th>';
             echo '<td>' . $row["title"] . '</td>';
             echo '<td>' . $row["authorfirstname"] . " " . $row["authorlastname"] . '</td>';
             echo '<td>' . $row["isbn"] . '</td>';
             echo '<td>' . $row["year"] . '</td>';
-            echo '<td> <button name="return" type="submit">Return</button></td>';
+            echo '<td> <form role = "form" action = "books.php" method = "post">
+                        <input name="bookid" value = "' . $book_id . '" type="hidden"/>
+                        <input name="borrow" type="submit" value="Borrow"/>
+                        </form>
+                        </td>';
             echo '</tr>';
         }
         echo "</table></div>";

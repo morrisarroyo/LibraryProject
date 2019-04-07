@@ -62,7 +62,7 @@ echo '
 			<a class="nav-link" href="userbook_account.php">Borrowed</a>
       </li>
       <li class="nav-item">
-			<a class="nav-link" href="#">Search</a>
+			<a class="nav-link" href="search.php">Search</a>
 		  </li>
 			<li class="nav-item" style="width:40em;">
 			<a class="nav-link" href="#"></a>
@@ -81,21 +81,38 @@ echo '	<li class="nav-item">
 	  </nav>
 	';
 ?>
+
+<?php
+if ($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['return'])) {
+    returnedBooks();
+}
+function returnedBooks()
+{
+    require "databaseConstants.php";
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    $bookid = $_POST['bookid'];
+    $sql = 'DELETE FROM user_book WHERE bookid = '. $bookid .'';
+    $result = mysqli_query($conn, $sql);
+}
+?>
 <?php
 
   //create the sql statement
-  $sql = "SELECT * FROM USER_BOOK LEFT JOIN book ON book.bookid=USER_BOOK.bookid";
+  $sql = "SELECT * FROM USER_BOOK LEFT JOIN book ON book.bookid=USER_BOOK.bookid LEFT JOIN user_table ut on USER_BOOK.userid = ut.userid";
   $result = mysqli_query($conn, $sql);
 
   if ($result->num_rows > 0) {
-      echo '     <div class ="container">
-      <h2 style="margin-top:4em; margin-left: 0.5em;"> Issued Books</h2>';
-      echo "<table class='table'>";
+    echo '    <h1 style="margin-top: 2em;margin-bottom: 1em;text-align: center; color: #0099ff
+    "> Total Books Borrowed: <b style=""">'.$result->num_rows.'</b> </h1>';
+    echo '     <div class ="container" style="margin-bottm:10em">
+    <h2 style="margin-top:2em;margin-left: 0.5em;"> Borrowed Books</h2>';
+    echo "<table class='table'>";
       echo '  <thead class="thead-dark">
               <tr>
                 <th scope="col"> #</th>
-                <th scope="col">Books</th>
-                <th scope="col">Name</th>
+                <th scope="col">Borrower</th>
+                <th scope="col">Book</th>
+                <th scope="col">Author</th>
                 <th scope="col">Date Borrowed</th>
                 <th scope="col">Date Expired</th>
                 <th scope="col">Return</th>
@@ -108,9 +125,10 @@ echo '	<li class="nav-item">
         $date_borrowed = date("Y-m-d",$row["date_borrowed"]);
         $date_expired = date("Y-m-d",$row["date_borrowed"]+60*60*24*7*2);
           // echo '<form method="post">';
+          
           echo '<tr>';
           echo '<th scope="row">' . $count . '</th>';
-          echo '<td>' . $row["authorfirstname"] . $row["authorlastname"] . '</td>';
+          echo '<td>' . $row["firstname"] .' ' . $row["lastname"] . '</td>';
           echo '<td>' . $row["title"] . '</td>';
           echo '<td>' . $row["authorfirstname"] .' ' .$row["authorlastname"] . '</td>';
           echo '<td>' . $date_borrowed . '</td>';
@@ -128,49 +146,29 @@ echo '	<li class="nav-item">
       echo "</table>
       </div>";
   }
-//  } else {
-//      echo '     <div class ="container">
-//    <h2 style="margin-top:4em; margin-left: 0.5em;"> My Issued Books</h2>';
-//      echo "<table class='table'>";
-//      echo '  <thead class="thead-dark">
-//            <tr>
-//              <th scope="col"> #</th>
-//              <th scope="col">Books</th>
-//              <th scope="col">Date Borrowed</th>
-//              <th scope="col">Return</th>
-//            </tr>
-//          </thead>';
-//      // echo '<form method="post">';
-//      echo '<tr>';
-//      echo '<th scope="row">'.$count.'</th>';
-//      echo '<td>' . $row["firstname"] . '</td>';
-//      echo '<td>' . $row["firstname"] . '</td>';
-//      echo '<td> <button name="return" type="submit">Return</button></td>';
-//      echo '</tr>';
-//      // echo '</form>';
-//  }
+ else {
+     echo '     <div class ="container">
+   <h2 style="margin-top:4em; margin-left: 0.5em;"> My Issued Books</h2>';
+     echo "<table class='table'>";
+     echo '  <thead class="thead-dark">
+           <tr>
+             <th scope="col"> #</th>
+             <th scope="col">Books</th>
+             <th scope="col">Date Borrowed</th>
+             <th scope="col">Return</th>
+           </tr>
+         </thead>';
+     // echo '<form method="post">';
+     echo '<tr>';
+     echo '<th scope="row">'.$count.'</th>';
+     echo '<td>' . $row["firstname"] . '</td>';
+     echo '<td>' . $row["firstname"] . '</td>';
+     echo '<td> <button name="return" type="submit">Return</button></td>';
+     echo '</tr>';
+     // echo '</form>';
+ }
   $conn->close();
 
-  if (isset($_POST["return"])) {
-
-      //     //CREATE A VARIABLE THAT HOLDS THE SELECTED PRODUCTED TO BE ADDED TO CART
-      //         $selectedProduct = $row_all["name"];
-
-      //     echo 'Selected Product  = '.$selectedProduct;
-
-      // }
-  }
-
-?>
-
-<?php
-if ($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['returned'])) {
-    returnedBooks();
-}
-function returnedBooks()
-{
-    // do stuff
-}
 ?>
 
 

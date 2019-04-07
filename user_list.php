@@ -62,7 +62,7 @@ echo '
       </li>
       
       <li class="nav-item">
-			<a class="nav-link" href="">Search</a>
+			<a class="nav-link" href="search.php">Search</a>
       </li>
       
 			<li class="nav-item" style="width:40em;">
@@ -100,12 +100,14 @@ $result = mysqli_query($conn, $sql);
 
 <?php
 //create the sql statement
-$sql = "SELECT * FROM user_table ORDER BY fine DESC";
+$sql = "SELECT * FROM user_table ORDER BY fine ASC";
 $result = mysqli_query($conn, $sql);
 
 if ($result->num_rows > 0) {
+  echo '    <h1 style="margin-top: 2em;margin-bottom: 1em;text-align: center;color: #0099ff
+  "> Total Users: <b style=""">'.$result->num_rows.'</b> </h1>';
     echo '     <div class ="container" style="margin-bottm:10em">
-    <h2 style="margin-top:4em;margin-left: 0.5em;"> Users</h2>';
+    <h2 style="margin-top:2em;margin-left: 0.5em;"> Users</h2>';
     echo "<table class='table'>";
     echo '  <thead class="thead-dark">
             <tr>
@@ -113,6 +115,7 @@ if ($result->num_rows > 0) {
               <th scope="col">Name  </th>
               <th scope="col">Email  </th>
               <th scope="col">Fine Due</th>
+              <th scope="col">Edit</th>
               <th scope="col">Delete</th>
             </tr>
           </thead>';

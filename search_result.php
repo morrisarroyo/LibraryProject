@@ -56,11 +56,11 @@ echo '
 			  <a class="nav-link" href="user_list.php">Users</a>
 			</li>
 
-		  <li class="nav-item active">
+		  <li class="nav-item">
 			<a class="nav-link" href="userbook_account.php">Borrowed</a>
       </li>
       <li class="nav-item">
-			<a class="nav-link" href="#">Search</a>
+			<a class="nav-link active" href="#">Search</a>
 		  </li>
 			<li class="nav-item" style="width:40em;">
 			<a class="nav-link" href="#"></a>
@@ -110,6 +110,9 @@ $sql = "SELECT * FROM book WHERE title LIKE '%$search_conn%'";
 // }
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
+    echo '    <h3 style="margin-top: 1em;margin-bottom: 1em;text-align: center;"><i> Keyword Searched: <b style=""">'.$search_conn.'</b></i> </h3>';
+    echo '<h5  style="margin-top: 2em;margin-bottom: 1em;text-align: center;"> Found <b>'.$result->num_rows.'</b> matche(s) for <b>"'.$search_conn.'"</b>
+    </h5>';
     echo '     <div class ="container"><h2 style="margin-top:2em; margin-left: 0.5em;"> </h2>';
     echo "<table class='table'>";
     echo '  <thead class="thead-dark">
@@ -119,7 +122,6 @@ if ($result->num_rows > 0) {
                   <th scope="col">Author</th>
                   <th scope="col">ISBN</th>
                   <th scope="col">YEAR</th>
-                  <th scope="col">Available</th>
                 </tr>
               </thead>';
 
@@ -132,14 +134,16 @@ if ($result->num_rows > 0) {
         echo '<td>' . $row["authorfirstname"] . " " . $row["authorlastname"] . '</td>';
         echo '<td>' . $row["isbn"] . '</td>';
         echo '<td>' . $row["year"] . '</td>';
-        echo '<td>' . $row["year"] . '</td>';
         // echo '<td> <button name="return" type="submit">Return</button></td>';
         echo '</tr>';
         $count++;
     }
     echo "</table></div>";
 } else {
-    echo 'no result found';
+    echo '<div>';
+    echo '    <h3 style="margin-top: 1em;margin-bottom: 1em;text-align: center;"><i> Keyword Searched: <b style="   "">'.$search_conn.'</b></i> </h3>';
+    echo '<h5  style="margin-top: 2em;margin-bottom: 1em;text-align: center;color:red"> Nothing found for <b>'.$search_conn.'</b></h5>';
+    echo ' </div>';
 }
 
 ?>
