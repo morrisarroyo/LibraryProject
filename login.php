@@ -94,6 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($count == 1) {
         // session_register("myusername");
         $_SESSION['login_user'] = $myusername;
+        $_SESSION['userid'] = $row['userid'];
         header("location: index.php");
     } else {
         echo '
