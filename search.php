@@ -64,7 +64,7 @@ echo '
       <li class="nav-item active">
 			<a class="nav-link" href="#">Search</a>
 		  </li>
-			<li class="nav-item" style="width:40em;">
+			<li class="nav-item" style="width:40.5em;">
 			<a class="nav-link" href="#"></a>
 		  </li>
 			';

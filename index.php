@@ -38,16 +38,16 @@ echo '
 		<div class="collapse navbar-collapse" id="navbarNav">
 		  <ul class="navbar-nav">
 			<li class="nav-item">
-			  <a class="nav-link" href="userbook_account.php"> <span class="sr-only">(current)</span></a>
+			  <a class="nav-link" href="search.php"> Search <span class="sr-only">(current)</span></a>
 			</li>
 			<li class="nav-item">
-			  <a class="nav-link" href="user_list.php"></a>
+			  <a class="nav-link" href="search.php"></a>
 			</li>
 
 		  <li class="nav-item">
 			<a class="nav-link" href="search.php"></a>
 		  </li>
-			<li class="nav-item" style="width:54.5em;">
+			<li class="nav-item" style="width:51em;">
 			<a class="nav-link" href="#"></a>
 		  </li>
 			';
@@ -55,7 +55,7 @@ echo '<li> <a style="color:blue;" class="nav-link" href"="#">';
 echo $_SESSION['login_user'];
 echo '</a></li>';
 echo '	<li class="nav-item">
-			<form role = "form" action = "index.php" method = "post">
+			<form role = "form" action = "login.php" method = "post">
 			<button type="submit" name="logout"> Log Out</button>
 		 	</form>
 		 	</li>
@@ -86,14 +86,17 @@ echo '	<li class="nav-item">
 </div> -->
 
 <div class ="container">
-<div style="width: 13em; margin: 0 auto; margin-top: 5em; margin-bottom:2em">
+<div style="width: 13em; margin: 0 auto; margin-top: 5em; margin-bottom:2em;">
     <h1> Dashboard </h1>
     </div>
-<div class="row" style="border: 1px solid black; margin-top: 5em; margin-bottom: 5em;">
+    <!-- <div class="row" style="width: 5em; border: 1px solid black; margin-top: 5em; margin-bottom: 5em; margin: 0 auto;">
+    <button style=""> Search </button>
+</div> -->
+<div class="row" style="width: 35em; border: 1px solid black; margin-top: 5em; margin-bottom: 5em; margin: 0 auto;">
 
         <div class="col-lg-3 col-lg-3">
           <!-- small box -->
-          <div class="" style=" width:10em; margin: 0 auto; margin-top: 1em; margin-bottom: 1em;">
+          <div class="" style=" width:15em; margin: 0 auto; margin-top: 1em; margin-bottom: 1em;padding:1.5em 1.5em;">
             <div class="">
               <?php
                 $sql = "SELECT * FROM book";
@@ -110,29 +113,11 @@ echo '	<li class="nav-item">
           </div>
         </div>
         <!-- ./col -->
-        <div class="col-lg-3 col-lg-3">
-          <!-- small box -->
-          <div class="small-box bg-green" style="width:10em; margin: 0 auto;margin-top: 1em; margin-bottom: 1em;">
-            <div class="inner">
-              <?php
-                $sql = "SELECT userid FROM user_table";
-                $query = $conn->query($sql);
 
-                echo "<h3 style='font-size: 4em;'>".$query->num_rows."</h3>";
-              ?>
-          
-              <p style='font-size: 1.5em;'>Search</p>
-            </div>
-            <!-- <div class="icon">
-              <i class="fa fa-graduation-cap"></i>
-            </div> -->
-            <a href="search.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
         <!-- ./col -->
         <div class="col-lg-3 col-lg-3">
           <!-- small box -->
-          <div class="small-box bg-yellow" style="width:10em; margin: 0 auto;margin-top: 1em; margin-bottom: 1em;">
+          <div class="small-box bg-yellow" style="width:15em; margin: 0 auto;margin-top: 1em; margin-bottom: 1em; margin-left: 1.5em; margin-right: 3em; padding:1.5em 1.5em;">
             <div class="inner">
               <?php
                 $sql = "SELECT * FROM user_table";
@@ -152,7 +137,7 @@ echo '	<li class="nav-item">
         <!-- ./col -->
         <div class="col-lg-3 col-lg-3">
           <!-- small box -->
-          <div class="small-box bg-red" style="width:10em; margin: 0 auto;margin-top: 1em; margin-bottom: 1em;">
+          <div class="small-box bg-red" style="width:14em; margin: 0 auto;margin-top: 1em; margin-left: 3em;margin-bottom: 1em;padding:1.5em 1.5em;">
             <div class="inner">
               <?php
                 $sql = "SELECT * FROM book";
@@ -277,5 +262,21 @@ function printCatalogue()
 }
 ?>
 <?php
-include 'footer.php'
+echo '    <div id="footer" style="margin-top:5em;">
+<p id="copyright">Library Project 2019 &copy;</p>
+<ul id="footer-social-media">
+    <li><a href="#" class="fa fa-facebook"></a></li>
+    <li><a href="#" class="fa fa-twitter"></a></li>
+    <li><a href="#" class="fa fa-linkedin"></a></li>
+    <li><a href="#" class="fa fa-instagram"></a></li>
+</ul>
+<p id="lastupdate"> Last update: April 2019</p>
+
+<ul>
+    <li><a href="#">Privacy Policy</a></li>
+    <li><a href="#">Sitemap</a></li>
+    <li><a href="#">Support</a></li>
+    <li><a href="admin.html">Admin</a></li>
+</ul>
+</div>';
 ?>

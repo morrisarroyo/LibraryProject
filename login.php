@@ -74,6 +74,9 @@ $msg = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // username and password sent from form
 
+    if(!isset($_POST['logout'])) {
+
+    
     $myusername = mysqli_real_escape_string($conn, $_POST['email']);
     $mypassword = mysqli_real_escape_string($conn, $_POST['password']);
 
@@ -91,7 +94,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($count == 1) {
         // session_register("myusername");
         $_SESSION['login_user'] = $myusername;
-        $_SESSION['userid'] = $row['userid'];
         header("location: index.php");
     } else {
         echo '
@@ -101,10 +103,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ';
     }
 }
+}
 ?>
-
-
-
     </div>
 
 

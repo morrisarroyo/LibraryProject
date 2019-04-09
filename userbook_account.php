@@ -64,7 +64,7 @@ echo '
       <li class="nav-item">
 			<a class="nav-link" href="search.php">Search</a>
 		  </li>
-			<li class="nav-item" style="width:40em;">
+			<li class="nav-item" style="width:40.5em;">
 			<a class="nav-link" href="#"></a>
 		  </li>
 			';
@@ -72,7 +72,7 @@ echo '<li> <a style="color:blue;" class="nav-link" href"="#">';
 echo $_SESSION['login_user'];
 echo '</a></li>';
 echo '	<li class="nav-item">
-			<form role = "form" action = "index.php" method = "post">
+			<form role = "form" action = "login.php" method = "post">
 			<button type="submit" name="logout"> Log Out</button>
 		 	</form>
 		 	</li>

@@ -48,7 +48,7 @@ echo '
 		  <li class="nav-item">
 			<a class="nav-link" href="search.php">Search</a>
 		  </li>
-			<li class="nav-item" style="width:40em;">
+			<li class="nav-item" style="width:40.5em;">
 			<a class="nav-link" href="#"></a>
 		  </li>
 			';
